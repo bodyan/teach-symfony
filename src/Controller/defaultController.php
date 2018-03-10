@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Entity\Satellite;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,11 +12,13 @@ class defaultController extends Controller
       */
     public function index()
     {
-        $articles ='article text';
-       return $this->render(
-            'base.html.twig',
-            array('articles' => $articles)
-        );
+        $repository = $this->getDoctrine()->getRepository(Satellite::class);
+        $satellites = $repository->findAll();
+
+        return $this->render('index.html.twig', [
+            'controller_name' => 'defaultController',
+            'satellites' => $satellites,
+        ]);
     }
 
 }

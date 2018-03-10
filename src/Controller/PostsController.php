@@ -23,4 +23,19 @@ class PostsController extends Controller
 
 
     }
+    /**
+     * @Route("/posts/{page}", name="posts_item", requirements={"page"="\d+"})
+     */
+    public function item($page = 1)
+    {
+        $repository = $this->getDoctrine()->getRepository(Posts::class);
+        $posts = $repository->findAll();
+
+        return $this->render('posts/index.html.twig', [
+            'controller_name' => 'PostsController',
+            'posts' => $posts,
+        ]);
+
+
+    }
 }
