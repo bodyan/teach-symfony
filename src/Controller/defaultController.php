@@ -15,10 +15,11 @@ class defaultController extends Controller
         $repository = $this->getDoctrine()->getRepository(Satellite::class);
         $satellites = $repository->findAll();
 
-        return $this->render('index.html.twig', [
+        return  $tmp = $this->render('index.html.twig', [
             'controller_name' => 'defaultController',
             'satellites' => $satellites,
         ]);
+
     }
 
 }

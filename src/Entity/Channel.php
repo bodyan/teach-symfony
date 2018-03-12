@@ -24,12 +24,12 @@ class Channel
     /**
      * @ORM\Column(type="smallint", length=4)
      */
-    private $longitude;
+    private $satellite_id;
 
     /**
      * @ORM\Column(type="smallint", length=6)
      */
-    private $id_transponder;
+    private $transponder_id;
 
     /**
      * @ORM\Column(type="string", length=100)
