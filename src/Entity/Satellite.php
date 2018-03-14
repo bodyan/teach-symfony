@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SatelliteRepository")
@@ -40,7 +42,6 @@ class Satellite
         return $this->id;
     }
 
-
     /**
      * @return mixed
      */
@@ -73,5 +74,21 @@ class Satellite
         $this->longitude = $longitude;
     }
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Transponder", mappedBy="satellite")
+     */
+    private $transponders;
 
+    public function __construct()
+    {
+        $this->transponders = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Transponders[]
+     */
+    public function getTransponders()
+    {
+        return $this->transponders;
+    }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TransponderRepository")
@@ -171,5 +173,19 @@ class Transponder
         $this->fec = $fec;
     }
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Satellite", inversedBy="transponder")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $satellite;
 
+    public function getSatellite(): Satellite
+    {
+        return $this->satellite;
+    }
+
+    public function setSatellite(Satellite $satellite)
+    {
+        $this->satellite = $satellite;
+    }
 }
